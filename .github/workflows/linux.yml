@@ -30,19 +30,26 @@ jobs:
       with:
         name: tracy-profiler
         path: tracy-profiler.tar.gz
+    - name: Create tag
+      run: |
+        git config user.name "github-actions"
+        git config user.email "github-actions@github.com"
+        git tag release-${{ github.run_number }}
+        git push origin release-${{ github.run_number }}
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ github.sha }}
-        name: Release ${{ github.sha }}
+        tag_name: release-${{ github.run_number }}
+        name: Release ${{ github.run_number }}
         draft: false
         prerelease: false
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Upload release asset
       uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ github.sha }}
+        tag_name: release-${{ github.run_number }}
         name: tracy-profiler
         files: tracy-profiler.tar.gz
       env:
