@@ -30,12 +30,6 @@ jobs:
       with:
         name: tracy-profiler
         path: tracy-profiler.tar.gz
-    - name: Create tag
-      run: |
-        git config user.name "github-actions"
-        git config user.email "github-actions@github.com"
-        git tag release-${{ github.run_id }}
-        git push origin release-${{ github.run_id }}
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
