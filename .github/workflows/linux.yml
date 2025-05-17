@@ -15,7 +15,7 @@ jobs:
     container: archlinux:base-devel
     steps:
     - name: Install dependencies
-      run: pacman -Syu --noconfirm && pacman -S --noconfirm --needed libxinerama freetype2 debuginfod wayland dbus libxkbcommon libglvnd meson cmake git wayland-protocols libxrandr nodejs
+      run: pacman -Syu --noconfirm && pacman -S --noconfirm --needed glfw libxinerama freetype2 debuginfod wayland dbus libxkbcommon libglvnd meson cmake git wayland-protocols libxrandr nodejs
     - name: Trust git repo
       run: git config --global --add safe.directory '*'
     - uses: actions/checkout@v4
